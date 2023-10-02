@@ -18,7 +18,9 @@ exports.createLoan = (loan) => {
 
 // Retrieve all Loans from the database.
 exports.findAllLoans = (req, res) => {
-  Loan.findAll()
+  Loan.findAll({
+    include: ["borrowers"],
+  })
     .then(data => {
       res.send(data);
     })
