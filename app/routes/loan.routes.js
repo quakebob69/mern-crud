@@ -4,10 +4,10 @@ module.exports = app => {
   var router = require("express").Router();
 
   // Create a new Loan
-  router.post("/", loan.createLoan);
+  router.post("/", loan.create);
  
   // Retrieve all Tutorials
-  router.get("/", loan.findAllLoans);
+  router.get("/", loan.findAll);
  
   /*
   // Retrieve all published Tutorials

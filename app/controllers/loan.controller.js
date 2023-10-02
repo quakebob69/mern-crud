@@ -2,22 +2,36 @@ const db = require("../models");
 const Loan = db.loans;
 //const Borrowers = db.borrowers;
 
-// Create and Save new Loans
-exports.createLoan = (loan) => {
-  return Loan.create({
-    loanId: loan.loanId
-  })
-    .then((loan) => {
-      console.log(">> Created loan: " + JSON.stringify(loan, null, 4));
-      return loan;
+// Create and Save a new Loan
+exports.create = (req, res) => {
+  // Validate request
+  if (!req.body.loanId) {
+    res.status(400).send({
+      message: "loanId can not be empty!"
+    });
+    return;
+  }
+
+  // Create a Loan
+  const loan = {
+    loanId: req.body.loanId
+  };
+
+  // Save Loan in the database
+  Loan.create(loan)
+    .then(data => {
+      res.send(data);
     })
-    .catch((err) => {
-      console.log(">> Error while creating loan: ", err);
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while creating the Loan."
+      });
     });
 };
 
 // Retrieve all Loans from the database.
-exports.findAllLoans = (req, res) => {
+exports.findAll = (req, res) => {
   Loan.findAll({
     include: ["borrowers"],
   })
@@ -31,4 +45,3 @@ exports.findAllLoans = (req, res) => {
       });
     });
 };
-
