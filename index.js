@@ -28,7 +28,7 @@ db.sequelize.sync({ force: true })
 		console.log("Failed to sync db: " + err.message);
 	});
 
-require("./app/routes/loan.routes")(app);
+require("./app/routes/ltk/loan.routes")(app);
 
 app.get('/', (req, res) => {
 	res.json({
