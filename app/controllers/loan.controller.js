@@ -51,7 +51,7 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
-  Tutorial.findByPk(id)
+  Loan.findByPk(id)
     .then(data => {
       if (data) {
         res.send(data);
