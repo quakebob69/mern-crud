@@ -1,5 +1,7 @@
 const supertest = require('supertest')
-const app = require('../../index');
+const createServer = require('../utils/server')
+
+const app = createServer();
 
 describe("loan", () => {
   describe("get loan route", () => {
