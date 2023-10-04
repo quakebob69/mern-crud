@@ -11,22 +11,19 @@ const loanPayloadInput = {
       "pairId": 1,
       "firstName": "Daniel",
       "lastName": "Call",
-      "phone": "801 706 4567",
-      "loanLoanId": null
+      "phone": "801 706 4567"
     },
     {
       "pairId": 2,
       "firstName": "Kathyrn",
       "lastName": "Wafmuffin",
-      "phone": "303 854 9078",
-      "loanLoanId": null
+      "phone": "303 854 9078"
     },
     {
       "pairId": 3,
       "firstName": "Avery",
       "lastName": "River",
-      "phone": "212 511 6584",
-      "loanLoanId": null
+      "phone": "212 511 6584"
     }
   ]
 };
@@ -39,24 +36,21 @@ const loanPayloadCheck = {
       "loanId": loanId,
       "firstName": "Daniel",
       "lastName": "Call",
-      "phone": "801 706 4567",
-      "loanLoanId": null
+      "phone": "801 706 4567"
     },
     {
       "pairId": 2,
       "loanId": loanId,
       "firstName": "Kathyrn",
       "lastName": "Wafmuffin",
-      "phone": "303 854 9078",
-      "loanLoanId": null
+      "phone": "303 854 9078"
     },
     {
       "pairId": 3,
       "loanId": loanId,
       "firstName": "Avery",
       "lastName": "River",
-      "phone": "212 511 6584",
-      "loanLoanId": null
+      "phone": "212 511 6584"
     }
   ]
 };

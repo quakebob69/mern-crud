@@ -1,6 +1,4 @@
-const { create, asdf2 } = require("../service/loan.service.js");
-const db = require("../models");
-const Loan = db.loans;
+const { create, findAll, findByPk } = require("../service/loan.service.js");
 
 // Create and Save a new Loan
 exports.create = async (req, res) => {
@@ -26,10 +24,8 @@ exports.create = async (req, res) => {
 };
 
 // Retrieve all Loans from the database.
-exports.findAll = (req, res) => {
-  Loan.findAll({
-    include: ["borrowers"],
-  })
+exports.findAll = async (req, res) => {
+  await findAll()
     .then(data => {
       res.send(data);
     })
@@ -42,12 +38,10 @@ exports.findAll = (req, res) => {
 };
 
 // Find a single loan with an id
-exports.findOne = (req, res) => {
+exports.findOne = async (req, res) => {
   const id = req.params.id;
 
-  Loan.findByPk(id, {
-    include: ["borrowers"],
-  })
+  await findByPk(id)
     .then(data => {
       if (data) {
         res.send(data);

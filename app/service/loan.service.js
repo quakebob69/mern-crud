@@ -1,20 +1,23 @@
 const db = require("../models");
 const Loan = db.loans;
 
-// Save Loan in the database
+// Save a Loan
 exports.create = async (loan) => {
     return Loan.create(loan, {
         include: ["borrowers"],
     })
 };
 
-module.exports.asdf2 = () => {
-    const msg = "Message From Service 2";
-    console.log(msg)
-    return msg;
+// Retrieve all Loans
+exports.findAll = async (req, res) => {
+    return Loan.findAll({
+        include: ["borrowers"],
+    })
 };
 
-
-
-
-
+// Find a single loan
+exports.findByPk = async (loanID) => {
+    return Loan.findByPk(loanID, {
+        include: ["borrowers"],
+    })
+};
