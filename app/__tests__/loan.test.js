@@ -4,7 +4,34 @@ const createServer = require('../utils/server')
 const app = createServer();
 
 const loanId = 111;
-const loanPayload = {
+const loanPayloadInput = {
+  "loanId": loanId,
+  "borrowers": [
+    {
+      "pairId": 1,
+      "firstName": "Daniel",
+      "lastName": "Call",
+      "phone": "801 706 4567",
+      "loanLoanId": null
+    },
+    {
+      "pairId": 2,
+      "firstName": "Kathyrn",
+      "lastName": "Wafmuffin",
+      "phone": "303 854 9078",
+      "loanLoanId": null
+    },
+    {
+      "pairId": 3,
+      "firstName": "Avery",
+      "lastName": "River",
+      "phone": "212 511 6584",
+      "loanLoanId": null
+    }
+  ]
+};
+
+const loanPayloadCheck = {
   "loanId": loanId,
   "borrowers": [
     {
@@ -39,10 +66,10 @@ describe("loan", () => {
     it("should return a 200 and create the loan", async () => {
       const { statusCode, body } = await supertest(app)
         .post("/api/loans")
-        .send(loanPayload);
+        .send(loanPayloadInput);
 
       expect(statusCode).toBe(200);
-      expect(body).toEqual(loanPayload);
+      expect(body).toEqual(loanPayloadCheck);
     });
   });
 
@@ -62,7 +89,7 @@ describe("loan", () => {
         );
 
         expect(statusCode).toBe(200);
-        expect(body).toEqual(loanPayload);
+        expect(body).toEqual(loanPayloadCheck);
       });
     });
   });
