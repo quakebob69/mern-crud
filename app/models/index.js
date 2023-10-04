@@ -25,6 +25,5 @@ db.loans = loanModel(sequelize, Sequelize);
 db.borrowers = borrowerModel(sequelize, Sequelize);
 
 db.loans.hasMany(db.borrowers, { foreignKey: 'loanId' });
-db.borrowers.belongsTo(db.loans);
 
 module.exports = db;

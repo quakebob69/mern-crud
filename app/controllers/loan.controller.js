@@ -1,3 +1,4 @@
+const { create, asdf2 } = require("../service/loan.service.js");
 const db = require("../models");
 const Loan = db.loans;
 
@@ -12,9 +13,7 @@ exports.create = async (req, res) => {
   }
 
   // Save Loan in the database
-  await Loan.create(req.body, {
-    include: ["borrowers"],
-  })
+  await create(req.body)
     .then(data => {
       res.send(data);
     })
