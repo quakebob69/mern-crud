@@ -3,9 +3,8 @@ const createServer = require('../utils/server')
 
 const app = createServer();
 
-const loanId = 456;
 const loanPayload = {
-  loanId: loanId,
+  loanId: 456,
 };
 
 describe("loan", () => {

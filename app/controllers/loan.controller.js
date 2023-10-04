@@ -46,12 +46,13 @@ exports.findAll = (req, res) => {
     });
 };
 
-
 // Find a single loan with an id
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
-  Loan.findByPk(id)
+  Loan.findByPk(id, {
+    include: ["borrowers"],
+  })
     .then(data => {
       if (data) {
         res.send(data);
