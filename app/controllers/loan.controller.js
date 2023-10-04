@@ -1,9 +1,9 @@
 const db = require("../models");
 const Loan = db.loans;
-//const Borrowers = db.borrowers;
+const Borrower = db.borrowers;
 
 // Create and Save a new Loan
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
   // Validate request
   if (!req.body.loanId) {
     res.status(400).send({
@@ -12,13 +12,10 @@ exports.create = (req, res) => {
     return;
   }
 
-  // Create a Loan
-  const loan = {
-    loanId: req.body.loanId
-  };
-
   // Save Loan in the database
-  Loan.create(loan)
+  await Loan.create(req.body, {
+    include: ["borrowers"],
+  })
     .then(data => {
       res.send(data);
     })

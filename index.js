@@ -36,12 +36,6 @@ app.get("/ping", (req, res) => {
 	});
 });
 
-//if (isLocal) {
-	//local host
-	app.listen(port, () => {
-		console.log(`Example app listening on port ${port}`)
-	});
-//} else {
-	//for lambda export
-//	module.exports = app;
-//}
+app.listen(port, () => {
+	console.log(`Example app listening on port ${port}`)
+});

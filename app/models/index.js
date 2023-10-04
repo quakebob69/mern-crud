@@ -22,12 +22,6 @@ db.sequelize = sequelize;
 db.loans = require("./loan.model.js")(sequelize, Sequelize);
 db.borrowers = require("./borrower.model.js")(sequelize, Sequelize);
 
-//db.loans.hasMany(db.borrowers, { as: "borrowers" });
-//db.borrowers.belongsTo(db.loans, {
-//  foreignKey: "loanId",
-//  as: "loan"
-//});
-
 db.loans.hasMany(db.borrowers, { foreignKey: 'loanId' });
 db.borrowers.belongsTo(db.loans);
 
