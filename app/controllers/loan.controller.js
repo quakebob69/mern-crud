@@ -1,6 +1,5 @@
 const db = require("../models");
 const Loan = db.loans;
-const Borrower = db.borrowers;
 
 // Create and Save a new Loan
 exports.create = async (req, res) => {
