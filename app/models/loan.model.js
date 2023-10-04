@@ -1,5 +1,7 @@
+const tableName = "loan";
+
 module.exports = (sequelize, Sequelize) => {
-    const Loan = sequelize.define("loan", {
+    const Loan = sequelize.define(tableName, {
         loanId: {
             type: Sequelize.INTEGER,
             primaryKey: true

@@ -1,6 +1,8 @@
 const dbConfig = require("../config/db.config.js");
-
 const Sequelize = require("sequelize");
+const loanModel = require("./loan.model.js")
+const borrowerModel = require("./borrower.model.js")
+
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
   dialect: dbConfig.dialect,
@@ -16,11 +18,11 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
 
 const db = {};
 
-db.Sequelize = Sequelize;
 db.sequelize = sequelize;
+db.Sequelize = Sequelize;
 
-db.loans = require("./loan.model.js")(sequelize, Sequelize);
-db.borrowers = require("./borrower.model.js")(sequelize, Sequelize);
+db.loans = loanModel(sequelize, Sequelize);
+db.borrowers = borrowerModel(sequelize, Sequelize);
 
 db.loans.hasMany(db.borrowers, { foreignKey: 'loanId' });
 db.borrowers.belongsTo(db.loans);

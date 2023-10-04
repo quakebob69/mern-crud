@@ -60,7 +60,7 @@ exports.findOne = (req, res) => {
     })
     .catch(err => {
       res.status(500).send({
-        message: "Error retrieving Loan with id=" + id
+        message: `Error retrieving Loan with id=` + id + ` (` + err + ').'
       });
     });
 };

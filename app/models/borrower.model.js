@@ -1,5 +1,7 @@
+const tableName = "borrower";
+
 module.exports = (sequelize, Sequelize) => {
-    const Borrower = sequelize.define("borrower", {
+    const Borrower = sequelize.define(tableName, {
         pairId: {
             type: Sequelize.INTEGER,
             primaryKey: true

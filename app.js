@@ -11,7 +11,7 @@ const app = createServer();
 
 app.use(cors(corsOptions));
 
-/*
+
 const db = require("./app/models");
 // drop the table if it already exists
 db.sequelize.sync({ force: true })
@@ -21,7 +21,7 @@ db.sequelize.sync({ force: true })
 	.catch((err) => {
 		console.log("Failed to sync db: " + err.message);
 	});
-*/
+
 
 app.get('/', (req, res) => {
 	res.json({
