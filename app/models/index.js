@@ -1,7 +1,7 @@
-const dbConfig = require("../config/db.config.js");
+const dbConfig = require("../config/db.config");
 const Sequelize = require("sequelize");
-const loanModel = require("./loan.model.js")
-const borrowerModel = require("./borrower.model.js")
+const loanModel = require("./loan.model")
+const borrowerModel = require("./borrower.model")
 
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,

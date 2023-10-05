@@ -1,4 +1,4 @@
-const { create, findAll, findByPk } = require("../service/loan.service.js");
+const { create, findAll, findByPk } = require("../service/loan.service");
 
 // Create and Save a new Loan
 exports.create = async (req, res) => {
