@@ -1,4 +1,4 @@
-const { create, findAll, findByPk, destroy } = require("../service/loan.service");
+const { create, findAll, findByPk, destroy, update } = require("../service/loan.service");
 
 // Create and Save a new Loan
 exports.create = async (req, res) => {
@@ -54,6 +54,29 @@ exports.findOne = async (req, res) => {
     .catch(err => {
       res.status(500).send({
         message: `Error retrieving Loan with id=` + id + ` (` + err + ').'
+      });
+    });
+};
+
+// Update a Loan by the id in the request
+exports.update = async (req, res) => {
+  const id = req.params.id;
+
+  await update(req.body, id)
+    .then(num => {
+      if (num == 1) {
+        res.send({
+          message: "Loan was updated successfully."
+        });
+      } else {
+        res.send({
+          message: `Cannot update Loan with id=${id}. Maybe Loan was not found or req.body is empty!`
+        });
+      }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Error updating Loan with id=" + id
       });
     });
 };

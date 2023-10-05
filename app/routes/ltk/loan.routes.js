@@ -20,8 +20,11 @@ module.exports = app => {
   
   // Update a Tutorial with id
   router.put("/:id", tutorials.update);
-  */ 
+  */
   
+  //Update a Tutorial with id
+  router.patch("/:id", loans.update);
+
   // Delete a Loan with id
   router.delete("/:id", loans.delete);
 
