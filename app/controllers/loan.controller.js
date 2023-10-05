@@ -1,4 +1,4 @@
-const { create, findAll, findByPk } = require("../service/loan.service");
+const { create, findAll, findByPk, destroy } = require("../service/loan.service");
 
 // Create and Save a new Loan
 exports.create = async (req, res) => {
@@ -32,7 +32,7 @@ exports.findAll = async (req, res) => {
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving loans."
+          err.message || "Some error occurred while retrieving loans" + ` (` + err + ').'
       });
     });
 };
@@ -54,6 +54,29 @@ exports.findOne = async (req, res) => {
     .catch(err => {
       res.status(500).send({
         message: `Error retrieving Loan with id=` + id + ` (` + err + ').'
+      });
+    });
+};
+
+// Delete a Loan with the specified id in the request
+exports.delete = async (req, res) => {
+  const id = req.params.id;
+
+  await destroy(id)
+    .then(num => {
+      if (num == 1) {
+        res.send({
+          message: "Loan was deleted successfully!"
+        });
+      } else {
+        res.send({
+          message: `Cannot delete Loan with id=${id}. Maybe Loan was not found!`
+        });
+      }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Could not delete Loan with id=" + id + ` (` + err + ').'
       });
     });
 };

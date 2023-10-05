@@ -12,18 +12,18 @@ module.exports = app => {
   /*
   // Retrieve all published Tutorials
   router.get("/published", tutorials.findAllPublished);
- */
+  */
+  
   // Retrieve a single Tutorial with id
   router.get("/:id", loans.findOne);
- /*
+  /*
+  
   // Update a Tutorial with id
   router.put("/:id", tutorials.update);
- 
-  // Delete a Tutorial with id
-  router.delete("/:id", tutorials.delete);
- 
-  // Delete all Tutorials
-  router.delete("/", tutorials.deleteAll);
-*/
+  */ 
+  
+  // Delete a Loan with id
+  router.delete("/:id", loans.delete);
+
   app.use('/api/loans', router);
 };

@@ -16,8 +16,15 @@ exports.findAll = async (req, res) => {
 };
 
 // Find a single loan
-exports.findByPk = async (loanID) => {
-    return Loan.findByPk(loanID, {
+exports.findByPk = async (id) => {
+    return Loan.findByPk(id, {
         include: ["borrowers"],
+    })
+};
+
+// Delete a single Loan
+exports.destroy = async (id) => {
+    return Loan.destroy({
+        where: { loanID: id },
     })
 };
