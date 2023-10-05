@@ -1,6 +1,6 @@
 const supertest = require('supertest')
 const createServer = require('../utils/server')
-const { loanPayloadInput, loanPayloadCheck, loanId} = require('./data/loan.data')
+const { loanPayloadInput, loanPayloadCheck, loanId } = require('./data/loan.data')
 
 const app = createServer();
 
@@ -36,4 +36,18 @@ describe("loan", () => {
       });
     });
   });
+
+  describe("delete loan route", () => {
+    describe("given the loan does exist", () => {
+      it("should return a 200 status and loan deleted message", async () => {
+        const { body, statusCode } = await supertest(app).delete(
+          `/api/loans/${loanId}`
+        );
+
+        expect(statusCode).toBe(200);
+        expect(body.message).toEqual("Loan was deleted successfully!");
+      });
+    });
+  });
+
 })
