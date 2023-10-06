@@ -1,4 +1,18 @@
-const express = require('express');
-const router = express.Router();
+module.exports = app => {
+    var router = require("express").Router();
 
-module.exports = router;
+    router.get('/', (req, res) => {
+        res.json({
+            message: "✨ 👋🌏 ✨",
+            stage: process.env.NODE_ENV,
+        });
+    });
+
+    router.get("/ping", (req, res) => {
+        res.json({
+            message: "🏓",
+        });
+    });
+
+    app.use('/', router);
+};

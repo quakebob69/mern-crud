@@ -14,19 +14,6 @@ db.sequelize.sync({ force: true })
 	});
 */
 
-app.get('/', (req, res) => {
-	res.json({
-		message: "✨ 👋🌏 ✨",
-		stage: process.env.NODE_ENV,
-	});
-});
-
-app.get("/ping", (req, res) => {
-	res.json({
-		message: "🏓",
-	});
-});
-
 app.listen(port, () => {
 	console.log(`Example app listening on port ${port}`)
 });
