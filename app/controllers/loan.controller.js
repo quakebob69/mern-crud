@@ -1,8 +1,9 @@
-const { findAll, findByPk, create, updateBorrower, destroyBorrower, destroyLoan } = require("../service/loan.service");
+const { findAllLoans, findLoanByPk, createLoan, destroyLoan } = require("../service/loan.service");
+const { updateBorrower, destroyBorrower } = require("../service/borrower.service");
 
 // Get all Loans
-exports.findAll = async (req, res) => {
-  await findAll()
+exports.findAllLoans = async (req, res) => {
+  await findAllLoans()
     .then(data => {
       res.send(data);
     })
@@ -15,10 +16,10 @@ exports.findAll = async (req, res) => {
 };
 
 // Get a Loan
-exports.findOne = async (req, res) => {
+exports.findOneLoan = async (req, res) => {
   const id = req.params.id;
 
-  await findByPk(id)
+  await findLoanByPk(id)
     .then(data => {
       if (data) {
         res.send(data);
@@ -36,7 +37,7 @@ exports.findOne = async (req, res) => {
 };
 
 // Add a new Loan (and Borrowers)
-exports.create = async (req, res) => {
+exports.createLoan = async (req, res) => {
   // Validate request
   if (!req.body.loanId) {
     res.status(400).send({
@@ -46,7 +47,7 @@ exports.create = async (req, res) => {
   }
 
   // Save Loan in the database
-  await create(req.body)
+  await createLoan(req.body)
     .then(data => {
       res.send(data);
     })

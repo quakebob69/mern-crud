@@ -4,13 +4,13 @@ module.exports = app => {
   var router = require("express").Router();
 
   // Get all Loans
-  router.get("/", loans.findAll);
+  router.get("/", loans.findAllLoans);
 
   // Get a Loan
-  router.get("/:id", loans.findOne);
+  router.get("/:id", loans.findOneLoan);
 
   // Add a new Loan (and Borrowers)
-  router.post("/", loans.create);
+  router.post("/", loans.createLoan);
 
   //Update a Borrower 
   router.patch("/:loanId/borrower/:pairId", loans.updateBorrower);
