@@ -1,17 +1,8 @@
 const createServer = require('./app/utils/server');
-const cors = require("cors");
-
 const port = 3000;
-const isLocal = true;
-var corsOptions = {
-	origin: "http://localhost:8081"
-};
-
 const app = createServer();
 
-app.use(cors(corsOptions));
-
-
+/*
 const db = require("./app/models");
 // drop the table if it already exists
 db.sequelize.sync({ force: true })
@@ -21,7 +12,7 @@ db.sequelize.sync({ force: true })
 	.catch((err) => {
 		console.log("Failed to sync db: " + err.message);
 	});
-
+*/
 
 app.get('/', (req, res) => {
 	res.json({
