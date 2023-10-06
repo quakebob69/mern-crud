@@ -1,4 +1,4 @@
-const loanId = 111;
+const { loanId } = require('.')
 
 const loanPayloadInput = {
   "loanId": loanId,

@@ -1,6 +1,7 @@
 const supertest = require('supertest')
 const createServer = require('../utils/server')
-const { loanPayloadInput, loanPayloadCheck, loanId } = require('./data/loan.data')
+const { loanId } = require('./data')
+const { loanPayloadInput, loanPayloadCheck } = require('./data/loan.data')
 
 const app = createServer();
 
