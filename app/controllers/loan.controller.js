@@ -1,9 +1,8 @@
-const { findAllLoans, findLoanByPk, createLoan, destroyLoan } = require("../service/loan.service");
-const { updateBorrower, destroyBorrower } = require("../service/borrower.service");
+const { findAll, findByPk, create, destroy } = require("../service/loan.service");
 
 // Get all Loans
-exports.findAllLoans = async (req, res) => {
-  await findAllLoans()
+exports.findAll = async (req, res) => {
+  await findAll()
     .then(data => {
       res.send(data);
     })
@@ -16,10 +15,10 @@ exports.findAllLoans = async (req, res) => {
 };
 
 // Get a Loan
-exports.findOneLoan = async (req, res) => {
+exports.findOne = async (req, res) => {
   const id = req.params.id;
 
-  await findLoanByPk(id)
+  await findByPk(id)
     .then(data => {
       if (data) {
         res.send(data);
@@ -37,7 +36,7 @@ exports.findOneLoan = async (req, res) => {
 };
 
 // Add a new Loan (and Borrowers)
-exports.createLoan = async (req, res) => {
+exports.create = async (req, res) => {
   // Validate request
   if (!req.body.loanId) {
     res.status(400).send({
@@ -47,7 +46,7 @@ exports.createLoan = async (req, res) => {
   }
 
   // Save Loan in the database
-  await createLoan(req.body)
+  await create(req.body)
     .then(data => {
       res.send(data);
     })
@@ -59,59 +58,11 @@ exports.createLoan = async (req, res) => {
     });
 };
 
-//Update a Borrower 
-exports.updateBorrower = async (req, res) => {
-  const loanId = req.params.loanId;
-  const pairId = req.params.pairId;
-
-  await updateBorrower(req.body, loanId, pairId)
-    .then(num => {
-      if (num == 1) {
-        res.send({
-          message: "Borrower was updated successfully."
-        });
-      } else {
-        res.send({
-          message: `Cannot update Borrower with loanid=${loanId} and pairId=${pairId}. Maybe Borrower was not found or req.body is empty!`
-        });
-      }
-    })
-    .catch(err => {
-      res.status(500).send({
-        message: "Could not update Borrower with loanId=" + loanId + " and pairId=" + pairId + ` (` + err + ').'
-      });
-    });
-};
-
-// Delete a Borrower
-exports.deleteBorrower = async (req, res) => {
-  const loanId = req.params.loanId;
-  const pairId = req.params.pairId;
-
-  await destroyBorrower(loanId, pairId)
-    .then(num => {
-      if (num == 1) {
-        res.send({
-          message: "Borrower was deleted successfully!"
-        });
-      } else {
-        res.send({
-          message: `Cannot delete Borrower with loanid=${loanId} and pairId=${pairId}. Maybe Loan was not found!`
-        });
-      }
-    })
-    .catch(err => {
-      res.status(500).send({
-        message: "Could not delete Borrower with loanId=" + loanId + " and pairId=" + pairId + ` (` + err + ').'
-      });
-    });
-};
-
 // Delete a Loan (and its Borrowers)
-exports.deleteLoan = async (req, res) => {
+exports.delete = async (req, res) => {
   const loanId = req.params.id;
 
-  await destroyLoan(loanId)
+  await destroy(loanId)
     .then(num => {
       if (num == 1) {
         res.send({
