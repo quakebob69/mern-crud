@@ -1,6 +1,6 @@
 const borrowerPayloadUpdate = {
   "firstName": "Don D. Duck",
-  "phone": "555 555 5555"
+  "phone": "444 444 4444"
 };
 
 module.exports = { borrowerPayloadUpdate };
