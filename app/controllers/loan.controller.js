@@ -58,39 +58,28 @@ exports.create = async (req, res) => {
     });
 };
 
-/*
-// Update a Loan by the id in the request
-exports.update = async (req, res) => {
-  const id = req.params.id;
+//Update a Borrower 
+exports.updateBorrower = async (req, res) => {
+  const loanId = req.params.loanId;
+  const pairId = req.params.pairId;
 
-  await update(req.body, id)
+  await updateBorrower(req.body, loanId, pairId)
     .then(num => {
       if (num == 1) {
         res.send({
-          message: "Loan was updated successfully."
+          message: "Borrower was updated successfully."
         });
       } else {
         res.send({
-          message: `Cannot update Loan with id=${id}. Maybe Loan was not found or req.body is empty!`
+          message: `Cannot update Borrower with loanid=${loanId} and pairId=${pairId}. Maybe Borrower was not found or req.body is empty!`
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Error updating Loan with id=" + id
+        message: "Could not update Borrower with loanId=" + loanId + " and pairId=" + pairId + ` (` + err + ').'
       });
     });
-};
-*/
-
-// Update a Borrower 
-exports.updateBorrower = async (req, res) => {
-  const loanId = req.params.loanId;
-  const pairId = req.params.pairId;
-
-  res.send({
-    message: "updateBorrower: loanId " + loanId + ", pairId " + pairId 
-  });
 };
 
 // Delete a Borrower
