@@ -9,7 +9,7 @@ exports.update = async (req, res) => {
     .then(num => {
       if (num == 1) {
         res.send({
-          message: "Borrower was updated successfully."
+          message: "Borrower was updated successfully!"
         });
       } else {
         res.send({

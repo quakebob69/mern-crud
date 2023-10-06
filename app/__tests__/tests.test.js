@@ -28,7 +28,7 @@ describe("loan", () => {
     });
 
     describe("given the loan does exist", () => {
-      it("should return a 200 status and the loan", async () => {
+      it("should return a 200 status and create the loan", async () => {
         const { body, statusCode } = await supertest(app).get(
           `/api/loans/${loanId}`
         );
@@ -39,8 +39,18 @@ describe("loan", () => {
     });
   });
 
+  describe("update borrower route", () => {
+    describe("given the borrower does exist", () => {
+      it("should return a 200 and update the borrower", async () => {
+        const { statusCode, body } = await supertest(app)
+          .patch(`/api/loans/${loanId}/borrower/${pairId}`)
+          .send(borrowerPayloadUpdate);
 
-  //borrowerPayloadUpdate
+        expect(statusCode).toBe(200);
+        expect(body.message).toEqual("Borrower was updated successfully!");
+      });
+    });
+  });
 
   describe("delete borrower route", () => {
     describe("given the borrower does exist", () => {
