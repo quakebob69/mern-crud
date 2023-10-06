@@ -23,7 +23,10 @@ module.exports = (sequelize, Sequelize) => {
             allowNull: false
         }
     }, {
-        timestamps: false
+        timestamps: false,
+        indexes: [
+            { fields: ['pairId', 'loanId'], unique: true }
+        ]
     });
 
     return Borrower;
