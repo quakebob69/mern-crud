@@ -3,30 +3,23 @@ module.exports = app => {
 
   var router = require("express").Router();
 
-  // Create a new Loan
-  router.post("/", loans.create);
- 
-  // Retrieve all Tutorials
+  // Get all Loans
   router.get("/", loans.findAll);
- 
-  /*
-  // Retrieve all published Tutorials
-  router.get("/published", tutorials.findAllPublished);
-  */
-  
-  // Retrieve a single Tutorial with id
-  router.get("/:id", loans.findOne);
-  /*
-  
-  // Update a Tutorial with id
-  router.put("/:id", tutorials.update);
-  */
-  
-  //Update a Tutorial with id
-  router.patch("/:id", loans.update);
 
-  // Delete a Loan with id
-  router.delete("/:id", loans.delete);
+  // Get a Loan
+  router.get("/:id", loans.findOne);
+
+  // Add a new Loan (and Borrowers)
+  router.post("/", loans.create);
+
+  //Update a Borrower 
+  router.patch("/:loanId/borrower/:borrowerId", loans.updateBorrower);
+
+  // Delete a Borrower
+  router.delete("/:loanId/borrower/:borrowerId", loans.deleteBorrower);
+
+  // Delete a Loan (and its Borrowers)
+  router.delete("/:id", loans.deleteLoan);
 
   app.use('/api/loans', router);
 };
