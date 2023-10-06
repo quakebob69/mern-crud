@@ -13,10 +13,10 @@ module.exports = app => {
   router.post("/", loans.create);
 
   //Update a Borrower 
-  router.patch("/:loanId/borrower/:borrowerId", loans.updateBorrower);
+  router.patch("/:loanId/borrower/:pairId", loans.updateBorrower);
 
   // Delete a Borrower
-  router.delete("/:loanId/borrower/:borrowerId", loans.deleteBorrower);
+  router.delete("/:loanId/borrower/:pairId", loans.deleteBorrower);
 
   // Delete a Loan (and its Borrowers)
   router.delete("/:id", loans.deleteLoan);

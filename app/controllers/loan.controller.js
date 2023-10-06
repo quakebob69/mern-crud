@@ -24,13 +24,13 @@ exports.findOne = async (req, res) => {
         res.send(data);
       } else {
         res.status(404).send({
-          message: `Cannot find Loan with id=${id}.`
+          message: `Cannot find Loan with loanId=${id}.`
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: `Error retrieving Loan with id=` + id + ` (` + err + ').'
+        message: `Error retrieving Loan with loanId=` + id + ` (` + err + ').'
       });
     });
 };
@@ -86,21 +86,35 @@ exports.update = async (req, res) => {
 // Update a Borrower 
 exports.updateBorrower = async (req, res) => {
   const loanId = req.params.loanId;
-  const borrowerId = req.params.borrowerId;
+  const pairId = req.params.pairId;
 
   res.send({
-    message: "updateBorrower: loanId " + loanId + ", borrowerId " + borrowerId 
+    message: "updateBorrower: loanId " + loanId + ", pairId " + pairId 
   });
 };
 
 // Delete a Borrower
 exports.deleteBorrower = async (req, res) => {
   const loanId = req.params.loanId;
-  const borrowerId = req.params.borrowerId;
+  const pairId = req.params.pairId;
 
-  res.send({
-    message: "deleteBorrower: loanId " + loanId + ", borrowerId " + borrowerId 
-  });
+  await destroyBorrower(loanId, pairId)
+    .then(num => {
+      if (num == 1) {
+        res.send({
+          message: "Borrower was deleted successfully!"
+        });
+      } else {
+        res.send({
+          message: `Cannot delete Borrower with loanid=${loanId} and pairId=${pairId}. Maybe Loan was not found!`
+        });
+      }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Could not delete Borrower with loanId=" + loanId + " and pairId=" + pairId + ` (` + err + ').'
+      });
+    });
 };
 
 // Delete a Loan (and its Borrowers)
@@ -115,13 +129,13 @@ exports.deleteLoan = async (req, res) => {
         });
       } else {
         res.send({
-          message: `Cannot delete Loan with id=${loanId}. Maybe Loan was not found!`
+          message: `Cannot delete Loan with loanId=${loanId}. Maybe Loan was not found!`
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Could not delete Loan with id=" + loanId + ` (` + err + ').'
+        message: "Could not delete Loan with loanId=" + loanId + ` (` + err + ').'
       });
     });
 };

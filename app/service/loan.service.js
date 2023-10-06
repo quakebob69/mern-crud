@@ -1,5 +1,6 @@
 const db = require("../models");
 const Loan = db.loans;
+const Borrower = db.borrowers;
 
 // Get all Loans
 exports.findAll = async (req, res) => {
@@ -30,9 +31,9 @@ exports.updateBorrower = async (payload, id) => {
 };
 
 // Delete a Borrower
-exports.destroyBorrower = async (id) => {
-    return Loan.destroy({
-        where: { loanID: id },
+exports.destroyBorrower = async (loanid, pairid) => {
+    return Borrower.destroy({
+        where: [{ loanId: loanid}, { pairId: pairid }],
     })
 };
 
