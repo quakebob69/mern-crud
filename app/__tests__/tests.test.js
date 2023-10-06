@@ -39,6 +39,22 @@ describe("loan", () => {
     });
   });
 
+
+  //borrowerPayloadUpdate
+
+  describe("delete borrower route", () => {
+    describe("given the borrower does exist", () => {
+      it("should return a 200 status and borrower deleted message", async () => {
+        const { body, statusCode } = await supertest(app).delete(
+          `/api/loans/${loanId}/borrower/${pairId}`
+        );
+
+        expect(statusCode).toBe(200);
+        expect(body.message).toEqual("Borrower was deleted successfully!");
+      });
+    });
+  });
+
   describe("delete loan route", () => {
     describe("given the loan does exist", () => {
       it("should return a 200 status and loan deleted message", async () => {
