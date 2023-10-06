@@ -1,6 +1,7 @@
 const express = require("express");
-const loanRoutes = require("../routes/ltk/loan.routes");
 const routes = require("../routes/ltk");
+const loanRoutes = require("../routes/ltk/loan.routes");
+const borrowerRoutes = require("../routes/ltk/borrower.routes");
 
 function createServer() {
     const app = express();
@@ -10,8 +11,9 @@ function createServer() {
     // parse requests of content-type - application/x-www-form-urlencoded
     app.use(express.urlencoded({ extended: true }));
 
-    loanRoutes(app);
     routes(app);
+    loanRoutes(app);
+    borrowerRoutes(app);
 
     return app;
 }
